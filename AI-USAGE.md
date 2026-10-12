@@ -1,0 +1,9 @@
+# Uso de IA
+
+ChatGPT/Codex foi usado para elaborar a implementação Python, os testes `unittest` e esta documentação a partir de `CONTRACT.md`. IA aplicou a decisão de proteção de marca: toda versão adicionada após a primeira aprovação, inclusive primeira inclusão opcional, precisa de revisão. Nesta última correção, IA acrescentou uma guarda UTF-8 nos campos textuais e uma regressão HTTP que confirma 400 antes de qualquer escrita, preservando Unicode válido e os espaços originais dos comentários.
+
+Na revisão, conferi o fluxo de campanha, entrega, versão, aprovação e comentário; a atualização transacional que invalida/restaura aprovação; a associação de comentário por `version_id`; e a validação de peças obrigatórias, segundos e duração. Os testes locais registrados neste projeto são a evidência executável. Não houve revisão de integração com upload, autenticação ou sistemas de produção; esses componentes não foram incluídos.
+
+A revisão descrita foi feita por agentes de IA. Não houve revisão humana declarada. A validação local deste snapshot passou em **15 testes próprios** (`python3 -m unittest discover -s tests -v`), oito testes adversariais da regra de negócio e dois testes Unicode adicionais (46 casos inválidos e roundtrip válido). O coordenador também comparou o serviço a um modelo de estados em um teste com 24 sequências determinísticas de 100 operações; não houve divergências nesses cenários.
+
+O coordenador leu o código e os testes e conferiu os limites documentados e a complexidade. A thread de origem confirmou a QA final com 15 testes recebidos pelo revisor principal e 16 independentes em Luna, incluindo 22 combinações inválidas com 400 e SQLite inalterado, Unicode válido e regra de negócio preservados. A publicação foi liberada após essa QA; a submissão oficial cabe à thread de origem.
